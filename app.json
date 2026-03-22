@@ -1,0 +1,40 @@
+{
+  "name": "Telegram Message Reporter",
+  "description": "Reports a specific Telegram message using a link and custom reason.",
+  "repository": "https://github.com/yourusername/your-repo-name",
+  "logo": "https://www.vectorlogo.zone/logos/telegram/telegram-icon.svg",
+  "keywords": ["telegram", "reporter", "telethon", "python"],
+  "env": {
+    "API_ID": {
+      "description": "Your Telegram API_ID from my.telegram.org",
+      "value": "29282829"
+    },
+    "API_HASH": {
+      "description": "Your Telegram API_HASH from my.telegram.org",
+      "value": "bj7285v7766828999167f46288"
+    },
+    "STRING_SESSION": {
+      "description": "Telethon String Session (Generate using Bot or PC)",
+      "required": true
+    },
+    "TARGET_LINK": {
+      "description": "Full link of the post (e.g., https://t.me/username/123)",
+      "required": true
+    },
+    "REASON": {
+      "description": "Reason for report (spam, violence, pornography, childabuse, copyright, fake, drugs)",
+      "value": "spam"
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "eco"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
