@@ -29,19 +29,19 @@ async def main():
         print(colored("❌ Error: STRING_SESSION or TARGET_LINK missing!", "red"))
         return
 
-    app = Client("fast_reporter", api_id=API_ID, api_hash=API_HASH, session_string=STRING_SESSION)
+    app = Client("ultra_fast_reporter", api_id=API_ID, api_hash=API_HASH, session_string=STRING_SESSION)
 
     async with app:
-        print(colored("🚀 1-Minute Fast Reporting Started...", "green"))
+        print(colored("🔥 1-Second Ultra-Fast Reporting Mode Active!", "red", attrs=['bold']))
         
         while True:
             try:
-                # Extracting details from link
+                # Link parsing
                 pattern = r"t\.me\/(?:c\/)?([^\/]+)\/(\d+)"
                 match = re.search(pattern, TARGET_LINK)
                 
                 if not match:
-                    print(colored("❌ Invalid Link Format!", "red"))
+                    print(colored("❌ Invalid Link!", "red"))
                     break 
 
                 peer_raw = match.group(1)
@@ -49,7 +49,7 @@ async def main():
                 peer = await app.resolve_peer(peer_raw)
                 selected_reason = REASONS.get(REASON_INPUT.lower(), types.InputReportReasonOther())
 
-                # Sending the Report
+                # The Report Action
                 await app.invoke(
                     functions.messages.Report(
                         peer=peer,
@@ -58,17 +58,16 @@ async def main():
                         message="NDPS Act / Illegal Drugs Violation"
                     )
                 )
-                print(colored(f"✅ Report Sent Successfully! (Msg: {msg_id})", "green"))
+                print(colored(f"✅ [1s] Report Sent! (Msg: {msg_id})", "green"))
                 
-                # 1 Minute Gap (60 seconds)
-                print(colored("⏳ Waiting 60 seconds for next report...", "yellow"))
-                await asyncio.sleep(60) 
+                # 1 Second Gap
+                await asyncio.sleep(1) 
 
             except Exception as e:
-                # Flood wait or other errors handle panna
-                print(colored(f"⚠️ Error: {e}", "red"))
-                print(colored("🔄 Retrying in 60 seconds...", "cyan"))
-                await asyncio.sleep(60)
+                # Flood Wait vandha script hang aagaama handle panna
+                print(colored(f"⚠️ Warning/Error: {e}", "yellow"))
+                # Telegram block panna, un account safe-ah irukka oru 30s pause kudukkuradhu nalladhu
+                await asyncio.sleep(30)
 
 if __name__ == "__main__":
     asyncio.run(main())
